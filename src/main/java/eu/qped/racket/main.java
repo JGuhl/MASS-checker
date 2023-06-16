@@ -7,7 +7,9 @@ public class main {
     public static void main(String[] args) {
         try {
 
-            String rktString = "(+ (+ 3 2) 4)";
+            //String rktString = "(+ 3 jsd)";
+            //String rktString = "(boolean? (boolean? true))";
+            String rktString = "(not #t)";
             //String rktString = "(number? 1)";
             //String rktString = "(equal? 6 \"half dozen\")";
             //String rktString = "(= abc \"8\")";

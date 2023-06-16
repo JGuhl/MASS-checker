@@ -22,6 +22,15 @@ public class BooleanEQ extends Expression {
         return true;
     }
 
+
+    public String evaluate1(List<Expression> list) throws Exception {
+        for (Expression e : list) {
+            if (!Boolean.valueOf((Boolean) e.evaluate(this)))
+                return Boolean.toString(false);
+        }
+        return Boolean.toString(true);
+    }
+
     @Override
     public String toString() {
         return "BooleanEQ" + "(" + super.getId() + ")";

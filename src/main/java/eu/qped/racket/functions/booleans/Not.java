@@ -15,11 +15,11 @@ public class Not extends Expression {
     public Object evaluate(List<Expression> list) throws Exception {
         for (Expression e : list) {
             if (e.evaluate(this).equals("false"))
-                return Boolean.toString(true);
+                return true;
             else
-                return Boolean.toString(false);
+                return false;
         }
-        return Boolean.toString(false);
+        return false;
     }
 
     @Override

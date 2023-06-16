@@ -1,6 +1,10 @@
 package eu.qped.racket.buildingBlocks;
 
 import eu.qped.racket.buildingBlocks.Expression;
+import eu.qped.racket.functions.booleans.BooleanEQ;
+import eu.qped.racket.functions.booleans.BooleanQ;
+import eu.qped.racket.functions.booleans.FalseQ;
+import eu.qped.racket.functions.booleans.Not;
 import eu.qped.racket.functions.numbers.*;
 
 import java.util.ArrayList;
@@ -26,11 +30,19 @@ public class OperatorNumbers {
     public Ceiling ceiling = new Ceiling();
     public Add1 add1 = new Add1();
     public Absolute absolute = new Absolute();
+
+    public BooleanEQ beq = new BooleanEQ();
+    public BooleanQ bq = new BooleanQ();
+    public FalseQ falseQq = new FalseQ();
+    public Not not = new Not();
+
     //public ArrayList<Class> arrayList = new ArrayList<>(Arrays.asList(plus.getClass(), minus.getClass(), division.getClass()));
     public ArrayList<Class> arrayList = new ArrayList<>(Arrays.asList(minus.getClass(), plus.getClass(), division.getClass(), sub1.getClass(),
                                                                 sqrt.getClass(), sqr.getClass(), round.getClass(), random.getClass(),
                                                                 multiplication.getClass(), modulo.getClass(), min.getClass(), max.getClass(),
                                                                 log.getClass(), floor.getClass(), exp.getClass(), ceiling.getClass(), add1.getClass(),
                                                                 absolute.getClass()));
+
+    public ArrayList<Class> boolArrayList = new ArrayList<>(Arrays.asList(beq.getClass(), bq.getClass(), falseQq.getClass(), not.getClass()));
 
 }
