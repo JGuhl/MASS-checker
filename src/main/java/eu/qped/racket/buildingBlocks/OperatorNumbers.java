@@ -43,6 +43,6 @@ public class OperatorNumbers {
                                                                 log.getClass(), floor.getClass(), exp.getClass(), ceiling.getClass(), add1.getClass(),
                                                                 absolute.getClass()));
 
-    public ArrayList<Class> boolArrayList = new ArrayList<>(Arrays.asList(beq.getClass(), bq.getClass(), falseQq.getClass(), not.getClass()));
+    public ArrayList<Class> boolArrayList = new ArrayList<>(Arrays.asList(bq.getClass(), beq.getClass(), falseQq.getClass(), not.getClass()));
 
 }

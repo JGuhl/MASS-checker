@@ -1,5 +1,6 @@
 package eu.qped.racket.functions.booleans;
 
+import eu.qped.racket.buildingBlocks.Boolean;
 import eu.qped.racket.buildingBlocks.Expression;
 import eu.qped.racket.buildingBlocks.Number;
 import eu.qped.racket.buildingBlocks.OperatorNumbers;
@@ -15,20 +16,19 @@ public class BooleanEQ extends Expression {
 
     @Override
     public Object evaluate(List<Expression> list) throws Exception {
+        OperatorNumbers opNum = new OperatorNumbers();
+        boolean endResult = false;
         for (Expression e : list) {
-            if (!(Boolean) e.evaluate(this))
-                return false;
+            for (Class<?> clazz : opNum.boolArrayList) {
+                if (e instanceof Boolean || (e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0)))) {
+                    endResult = true;
+                }
+                else {
+                    return false;
+                }
+            }
         }
-        return true;
-    }
-
-
-    public String evaluate1(List<Expression> list) throws Exception {
-        for (Expression e : list) {
-            if (!Boolean.valueOf((Boolean) e.evaluate(this)))
-                return Boolean.toString(false);
-        }
-        return Boolean.toString(true);
+        return endResult;
     }
 
     @Override

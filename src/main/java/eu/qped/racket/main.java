@@ -8,8 +8,10 @@ public class main {
         try {
 
             //String rktString = "(+ 3 jsd)";
+            //String rktString = "(not false)";
+            String rktString = "(boolean=? fgds fgds)";
             //String rktString = "(boolean? (boolean? true))";
-            String rktString = "(not #t)";
+            //String rktString = "(false? (false? false))";
             //String rktString = "(number? 1)";
             //String rktString = "(equal? 6 \"half dozen\")";
             //String rktString = "(= abc \"8\")";

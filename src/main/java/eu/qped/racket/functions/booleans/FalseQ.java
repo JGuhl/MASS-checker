@@ -13,20 +13,25 @@ public class FalseQ extends Expression{
         return evaluate(e.getRest(super.getId()));
     }
 
-    //@Override
+
     public Object evaluate(List<Expression> list) throws Exception {
         OperatorNumbers opNum = new OperatorNumbers();
-        int count = 0;
         for (Expression e : list) {
+            int count = 0;
             for (Class<?> clazz : opNum.boolArrayList) {
                 count++;
-                if (e instanceof Boolean || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
-                    if(e.evaluate(this).equals("false"))
+                if (e instanceof Boolean || (e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0)))) {
+                    Object result = e.evaluate(this);
+                    System.out.println("Heyyy 1: " + result);
+                    if (!result.equals("true")) {
+                        System.out.println(result.getClass());
                         return true;
-                    else
+                    } else {
+                        System.out.println("Heyyyyyyy");
                         return false;
+                    }
                 } else {
-                    if (opNum.arrayList.size() == count) {
+                    if (opNum.boolArrayList.size() == count) {
                         throw new Exception("Expression isn't instance of Boolean");
                     }
                 }
@@ -34,7 +39,6 @@ public class FalseQ extends Expression{
         }
         return false;
     }
-
 
     @Override
     public String toString() {

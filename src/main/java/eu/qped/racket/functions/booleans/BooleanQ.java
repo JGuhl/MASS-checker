@@ -26,15 +26,15 @@ public class BooleanQ extends Expression {
     @Override
     public Object evaluate(List<Expression> list) throws Exception {
         OperatorNumbers opNum = new OperatorNumbers();
-        int count = 0;
         for (Expression e : list) {
+            int count = 0;
             for (Class<?> clazz : opNum.boolArrayList) {
                 count++;
                 if (e instanceof Boolean || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
                     if (e.evaluate(this).equals("true") || e.evaluate(this).equals("false"))
                         return true;
                 } else {
-                    if (opNum.arrayList.size() == count) {
+                    if (opNum.boolArrayList.size() == count) {
                         throw new Exception("Expression isn't instance of Boolean");
                     }
                 }
