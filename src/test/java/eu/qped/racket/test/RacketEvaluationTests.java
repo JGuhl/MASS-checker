@@ -1023,7 +1023,7 @@ public class RacketEvaluationTests {
         s = "(boolean=? false false)";
         inter = new DrRacketInterpreter(s);
         inter.evaluate();
-        assertEquals(Boolean.toString(false), inter.evaluateExpressions());
+        assertEquals(Boolean.toString(true), inter.evaluateExpressions());
 
         s = "(boolean=? #true #true)";
         inter = new DrRacketInterpreter(s);
@@ -1043,7 +1043,7 @@ public class RacketEvaluationTests {
         s = "(boolean=? #false #false)";
         inter = new DrRacketInterpreter(s);
         inter.evaluate();
-        assertEquals(Boolean.toString(false), inter.evaluateExpressions());
+        assertEquals(Boolean.toString(true), inter.evaluateExpressions());
 
         s = "(boolean=? #t #t)";
         inter = new DrRacketInterpreter(s);
@@ -1063,7 +1063,7 @@ public class RacketEvaluationTests {
         s = "(boolean=? #f #f)";
         inter = new DrRacketInterpreter(s);
         inter.evaluate();
-        assertEquals(Boolean.toString(false), inter.evaluateExpressions());
+        assertEquals(Boolean.toString(true), inter.evaluateExpressions());
     }
 
     @Test

@@ -17,18 +17,30 @@ public class BooleanEQ extends Expression {
     @Override
     public Object evaluate(List<Expression> list) throws Exception {
         OperatorNumbers opNum = new OperatorNumbers();
-        boolean endResult = false;
+        boolean firstBoolean = false;
+        boolean first = true;
         for (Expression e : list) {
+            int count = 0;
             for (Class<?> clazz : opNum.boolArrayList) {
+                count++;
                 if (e instanceof Boolean || (e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0)))) {
-                    endResult = true;
+                    if(first){
+                        firstBoolean = (boolean) e.evaluate(this);
+                        first = false;
+                        break;
+                    }
+                    if(firstBoolean == (boolean) e.evaluate(this)){
+                        return true;
+                    }
                 }
                 else {
-                    return false;
+                    if (opNum.boolArrayList.size() == count) {
+                        throw new Exception("Expression isnt instance of Boolean");
+                    }
                 }
             }
         }
-        return endResult;
+        return false;
     }
 
     @Override

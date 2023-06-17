@@ -31,11 +31,11 @@ public class BooleanQ extends Expression {
             for (Class<?> clazz : opNum.boolArrayList) {
                 count++;
                 if (e instanceof Boolean || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
-                    if (e.evaluate(this).equals("true") || e.evaluate(this).equals("false"))
+                    if ((boolean) e.evaluate(this) || !(boolean) e.evaluate(this))        // (boolean)e.evaluate(this) == true || (boolean) e.evaluate(this) == false
                         return true;
                 } else {
                     if (opNum.boolArrayList.size() == count) {
-                        throw new Exception("Expression isn't instance of Boolean");
+                        return false;
                     }
                 }
             }

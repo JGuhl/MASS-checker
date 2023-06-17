@@ -23,7 +23,7 @@ public class FalseQ extends Expression{
                 if (e instanceof Boolean || (e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0)))) {
                     Object result = e.evaluate(this);
                     System.out.println("Heyyy 1: " + result);
-                    if (!result.equals("true")) {
+                    if (!(boolean)result) {
                         System.out.println(result.getClass());
                         return true;
                     } else {
