@@ -1,15 +1,15 @@
 package eu.qped.racket.buildingBlocks;
 
 
-import eu.qped.racket.functions.CustomFunction;
+import eu.qped.racket.functions.define.CustomFunction;
 
 import java.util.List;
 
 public class Parameter extends CustomFunction {
-    String paraName;
+    Object paraName;
     String value;
 
-    public Parameter(String paraName) {
+    public Parameter(Object paraName) {
         this.paraName = paraName;
     }
 
@@ -17,7 +17,7 @@ public class Parameter extends CustomFunction {
         this.value = value;
     }
 
-    public String getParaName() {
+    public Object getParaName() {
         return this.paraName;
     }
 

@@ -3,6 +3,7 @@ package eu.qped.racket.functions.numbers;
 import eu.qped.racket.buildingBlocks.Expression;
 import eu.qped.racket.buildingBlocks.Number;
 import eu.qped.racket.buildingBlocks.OperatorNumbers;
+import eu.qped.racket.buildingBlocks.Parameter;
 
 import java.util.List;
 
@@ -23,10 +24,28 @@ public class Modulo extends Expression {
         int count = 0;
         for (Class<?> clazz : opNum.arrayList) {
             count++;
-            if ((list.get(0) instanceof Number || clazz.isInstance(list.get(0).getParts().get(0))) || (list.get(1) instanceof Number || clazz.isInstance(list.get(1).getParts().get(0)))) {
-                value1 = (float) list.get(0).evaluate(this);
-                value2 = (float) list.get(1).evaluate(this);
-                result = value1 % value2;
+            if ((list.get(0) instanceof Number || list.get(0) instanceof Parameter || list.get(0).getParts().size() > 0 && clazz.isInstance(list.get(0).getParts().get(0))) || (list.get(1) instanceof Number || list.get(1) instanceof Parameter || list.get(1).getParts().size() > 0 && clazz.isInstance(list.get(1).getParts().get(0)))) {
+                if (list.get(0) instanceof Number || list.get(0).getParts().size() > 0 && clazz.isInstance(list.get(0).getParts().get(0))) {
+                    value1 = (float) list.get(0).evaluate(this);
+                    value2 = (float) list.get(1).evaluate(this);
+                    result = value1 % value2;
+                } else {
+                    try {
+                        if (list.get(0).evaluate(this) instanceof String) {
+                            value1 = (float) Float.parseFloat((String) list.get(0).evaluate(this));
+                        } else {
+                            value1 = (float) list.get(0).evaluate(this);
+                        }
+                        if (list.get(1).evaluate(this) instanceof String) {
+                            value2 = (float) Float.parseFloat((String) list.get(1).evaluate(this));
+                        } else {
+                            value2 = (float) list.get(1).evaluate(this);
+                        }
+                        result = value1 % value2;
+                    } catch (NumberFormatException ex) {
+                        throw new Exception("Expression evaluation result is not a Number");
+                    }
+                }
                 break;
             } else {
                 if (opNum.arrayList.size() == count) {

@@ -1,10 +1,6 @@
 package eu.qped.racket.buildingBlocks;
 
-import eu.qped.racket.buildingBlocks.Expression;
-import eu.qped.racket.functions.booleans.BooleanEQ;
-import eu.qped.racket.functions.booleans.BooleanQ;
-import eu.qped.racket.functions.booleans.FalseQ;
-import eu.qped.racket.functions.booleans.Not;
+import eu.qped.racket.functions.booleans.*;
 import eu.qped.racket.functions.numbers.*;
 
 import java.util.ArrayList;
@@ -46,7 +42,6 @@ public class OperatorNumbers {
     public Even even = new Even();
     public Equal equal = new Equal();
 
-    //public ArrayList<Class> arrayList = new ArrayList<>(Arrays.asList(plus.getClass(), minus.getClass(), division.getClass()));
     public ArrayList<Class> arrayList = new ArrayList<>(Arrays.asList(minus.getClass(), plus.getClass(), division.getClass(), sub1.getClass(),
             sqrt.getClass(), sqr.getClass(), round.getClass(), random.getClass(),
             multiplication.getClass(), modulo.getClass(), min.getClass(), max.getClass(),

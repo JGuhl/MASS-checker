@@ -14,6 +14,6 @@ public class Number extends Expression {
 
     @Override
     public String toString() {
-        return "Number " + value + " (" + super.getId() + ")";
+        return "Number " + value;
     }
 }

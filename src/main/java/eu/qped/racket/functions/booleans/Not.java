@@ -8,11 +8,26 @@ import java.util.List;
 
 public class Not extends Expression {
 
+    /**
+     * This method evaluates the "Not" expression.
+     * It takes a parent expression and evaluates its children recursively.
+     *
+     * @param e the Parent Expression
+     * @return the boolean result of the "Not" operation
+     * @throws Exception if there's an issue during evaluation
+     */
     @Override
     public Object evaluate(Expression e) throws Exception {
         return evaluate(e.getRest(super.getId()));
     }
 
+    /**
+     * This method evaluates the "Not" expression given a list of expressions.
+     *
+     * @param list the list of expressions to evaluate
+     * @return the boolean result of the "Not" operation
+     * @throws Exception if there's an issue during evaluation
+     */
     @Override
     public Object evaluate(List<Expression> list) throws Exception {
         OperatorNumbers opNum = new OperatorNumbers();
@@ -31,7 +46,7 @@ public class Not extends Expression {
                     }
                 } else {
                     if (opNum.boolArrayList.size() == count) {
-                        throw new Exception("Expression isn't instance of Boolean");
+                        throw new Exception("Expression isn't an instance of Boolean");
                     }
                 }
             }
@@ -39,6 +54,11 @@ public class Not extends Expression {
         return false;
     }
 
+    /**
+     * This method returns a string representation of the "Not" expression.
+     *
+     * @return a string representation of the expression
+     */
     @Override
     public String toString() {
         return "Not" + "(" + super.getId() + ")";

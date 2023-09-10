@@ -2,7 +2,7 @@ package eu.qped.racket.interpret;
 
 import eu.qped.Temp.DrRacketLexer;
 import eu.qped.Temp.DrRacketParser;
-import eu.qped.racket.functions.CustomFunction;
+import eu.qped.racket.functions.define.CustomFunction;
 import eu.qped.racket.functions.booleans.*;
 import eu.qped.racket.functions.lists.*;
 import eu.qped.racket.functions.numbers.*;
@@ -233,8 +233,6 @@ public class DrRacketInterpreter {
 
 			System.out.println("\tname is : " + nodeList.item(j).getNodeName() + "( " + inside.getNamedItem("type") + " | " + inside.getNamedItem("value") + " )");
 			String valueString = inside.getNamedItem("value").toString();
-
-
 
 			//On Custom function
 			if (valueString.compareTo("value=\"define\"") == 0) {	//Define

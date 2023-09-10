@@ -3,6 +3,7 @@ package eu.qped.racket.buildingBlocks;
 import java.util.List;
 
 public class Cons extends Expression {
+
     @Override
     public Object evaluate(Expression e) throws Exception {
         return evaluate( e.getRest(super.getId()));

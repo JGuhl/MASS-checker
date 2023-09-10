@@ -3,6 +3,7 @@ package eu.qped.racket.functions.numbers;
 import eu.qped.racket.buildingBlocks.Expression;
 import eu.qped.racket.buildingBlocks.Number;
 import eu.qped.racket.buildingBlocks.OperatorNumbers;
+import eu.qped.racket.buildingBlocks.Parameter;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Plus extends Expression {
 
     @Override
     public Object evaluate(List<Expression> list) throws Exception {
+        System.out.println("Hiiiiiiiiiii");
         OperatorNumbers opNum = new OperatorNumbers();
         float result = 0;
         int count = 0;
@@ -24,8 +26,16 @@ public class Plus extends Expression {
             count = 0;
                 for (Class<?> clazz : opNum.arrayList) {
                     count++;
-                    if (e instanceof Number || clazz.isInstance(e.getParts().get(0))) {
-                        result += (float) e.evaluate(this);
+                    if (e instanceof Number || e instanceof Parameter || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
+                        if (e instanceof Number || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
+                            result += (float) e.evaluate(this);
+                        } else {
+                            try {
+                                result += (float) Float.parseFloat((String) e.evaluate(this));
+                            } catch (NumberFormatException ex) {
+                                throw new Exception("Expression evaluation result is not a Number");
+                            }
+                        }
                         break;
                     } else {
                         if (opNum.arrayList.size() == count) {

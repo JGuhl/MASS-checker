@@ -1,4 +1,4 @@
-package eu.qped.racket.functions;
+package eu.qped.racket.functions.define;
 
 import eu.qped.racket.buildingBlocks.Expression;
 import eu.qped.racket.buildingBlocks.Parameter;
@@ -25,7 +25,6 @@ public class CustomFunction extends Expression {
     @Override
     public Object evaluate(Expression e) throws Exception {
         return evaluate(e.getRest(super.getId()));
-        //return evaluate(e.getNext(id), e.getNext(id+1));
     }
 
     public Object evaluate(List<Expression> list) throws Exception {
@@ -37,8 +36,6 @@ public class CustomFunction extends Expression {
             hMap.put(list.get(i).evaluate(this), parameters.get(i));
             parameters.get(i).setValue(String.valueOf(list.get(i).evaluate(this)));
         }
-
-        //System.out.println(hMap);
 
         for (int i = 0; i < body.getParts().size(); i++) {
             if (body.getParts().get(i).getClass().equals(new Parameter(null).getClass())) {

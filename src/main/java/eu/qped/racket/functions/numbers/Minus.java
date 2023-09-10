@@ -3,6 +3,7 @@ package eu.qped.racket.functions.numbers;
 import eu.qped.racket.buildingBlocks.Expression;
 import eu.qped.racket.buildingBlocks.Number;
 import eu.qped.racket.buildingBlocks.OperatorNumbers;
+import eu.qped.racket.buildingBlocks.Parameter;
 
 import java.util.List;
 
@@ -24,13 +25,28 @@ public class Minus extends Expression {
             count = 0;
             for (Class<?> clazz : opNum.arrayList) {
                 count++;
-                if (e instanceof Number || clazz.isInstance(e.getParts().get(0))) {
-                    if (first) {
-                        result = (float) e.evaluate(this);
-                        first = false;
-                        break;
+                if (e instanceof Number || e instanceof Parameter || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
+                    if (e instanceof Number || e.getParts().size() > 0 && clazz.isInstance(e.getParts().get(0))) {
+                        if (first) {
+                            result = (float) e.evaluate(this);
+                            first = false;
+                            break;
+                        } else {
+                            result -= (float) e.evaluate(this);
+                            break;
+                        }
                     } else {
-                        result -= (float) e.evaluate(this);
+                        try {
+                            if (first) {
+                                // If it's the first expression, set the result to its evaluation
+                                result = (float) Float.parseFloat((String) e.evaluate(this));
+                                first = false;
+                            } else {
+                                result -= (float) Float.parseFloat((String) e.evaluate(this));
+                            }
+                        } catch (NumberFormatException ex) {
+                            throw new Exception("Expression evaluation result is not a Number");
+                        }
                         break;
                     }
                 } else {
